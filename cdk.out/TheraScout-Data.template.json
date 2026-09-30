@@ -1,0 +1,578 @@
+{
+ "Resources": {
+  "RawDataBucket57F26C03": {
+   "Type": "AWS::S3::Bucket",
+   "Properties": {
+    "LifecycleConfiguration": {
+     "Rules": [
+      {
+       "ExpirationInDays": 90,
+       "Id": "expire-staging-after-90-days",
+       "Prefix": "staging/",
+       "Status": "Enabled"
+      }
+     ]
+    }
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Data/RawDataBucket/Resource"
+   }
+  },
+  "TheraScoutVpcE50A829F": {
+   "Type": "AWS::EC2::VPC",
+   "Properties": {
+    "CidrBlock": "10.0.0.0/16",
+    "EnableDnsHostnames": true,
+    "EnableDnsSupport": true,
+    "InstanceTenancy": "default",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "TheraScout-Data/TheraScoutVpc"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Data/TheraScoutVpc/Resource"
+   }
+  },
+  "TheraScoutVpcPublicSubnet1Subnet1D1E3D59": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      0,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.0.0/18",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Public"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "TheraScout-Data/TheraScoutVpc/PublicSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "TheraScoutVpcE50A829F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Data/TheraScoutVpc/PublicSubnet1/Subnet"
+   }
+  },
+  "TheraScoutVpcPublicSubnet1RouteTableC3A5D3A6": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "TheraScout-Data/TheraScoutVpc/PublicSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "TheraScoutVpcE50A829F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Data/TheraScoutVpc/PublicSubnet1/RouteTable"
+   }
+  },
+  "TheraScoutVpcPublicSubnet1RouteTableAssociation141E3C8C": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "TheraScoutVpcPublicSubnet1RouteTableC3A5D3A6"
+    },
+    "SubnetId": {
+     "Ref": "TheraScoutVpcPublicSubnet1Subnet1D1E3D59"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Data/TheraScoutVpc/PublicSubnet1/RouteTableAssociation"
+   }
+  },
+  "TheraScoutVpcPublicSubnet1DefaultRouteCC7D9A74": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "TheraScoutVpcIGW7788A270"
+    },
+    "RouteTableId": {
+     "Ref": "TheraScoutVpcPublicSubnet1RouteTableC3A5D3A6"
+    }
+   },
+   "DependsOn": [
+    "TheraScoutVpcVPCGW6F0CB96C"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Data/TheraScoutVpc/PublicSubnet1/DefaultRoute"
+   }
+  },
+  "TheraScoutVpcPublicSubnet2Subnet9F79940C": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      1,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.64.0/18",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Public"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "TheraScout-Data/TheraScoutVpc/PublicSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "TheraScoutVpcE50A829F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Data/TheraScoutVpc/PublicSubnet2/Subnet"
+   }
+  },
+  "TheraScoutVpcPublicSubnet2RouteTable9C9D31B3": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "TheraScout-Data/TheraScoutVpc/PublicSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "TheraScoutVpcE50A829F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Data/TheraScoutVpc/PublicSubnet2/RouteTable"
+   }
+  },
+  "TheraScoutVpcPublicSubnet2RouteTableAssociation58E8A124": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "TheraScoutVpcPublicSubnet2RouteTable9C9D31B3"
+    },
+    "SubnetId": {
+     "Ref": "TheraScoutVpcPublicSubnet2Subnet9F79940C"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Data/TheraScoutVpc/PublicSubnet2/RouteTableAssociation"
+   }
+  },
+  "TheraScoutVpcPublicSubnet2DefaultRoute1E7AA5AA": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "TheraScoutVpcIGW7788A270"
+    },
+    "RouteTableId": {
+     "Ref": "TheraScoutVpcPublicSubnet2RouteTable9C9D31B3"
+    }
+   },
+   "DependsOn": [
+    "TheraScoutVpcVPCGW6F0CB96C"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Data/TheraScoutVpc/PublicSubnet2/DefaultRoute"
+   }
+  },
+  "TheraScoutVpcIsolatedSubnet1Subnet6C0F64E9": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      0,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.128.0/18",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Isolated"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Isolated"
+     },
+     {
+      "Key": "Name",
+      "Value": "TheraScout-Data/TheraScoutVpc/IsolatedSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "TheraScoutVpcE50A829F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Data/TheraScoutVpc/IsolatedSubnet1/Subnet"
+   }
+  },
+  "TheraScoutVpcIsolatedSubnet1RouteTableBDB6E418": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "TheraScout-Data/TheraScoutVpc/IsolatedSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "TheraScoutVpcE50A829F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Data/TheraScoutVpc/IsolatedSubnet1/RouteTable"
+   }
+  },
+  "TheraScoutVpcIsolatedSubnet1RouteTableAssociation41D7FE31": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "TheraScoutVpcIsolatedSubnet1RouteTableBDB6E418"
+    },
+    "SubnetId": {
+     "Ref": "TheraScoutVpcIsolatedSubnet1Subnet6C0F64E9"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Data/TheraScoutVpc/IsolatedSubnet1/RouteTableAssociation"
+   }
+  },
+  "TheraScoutVpcIsolatedSubnet2Subnet92CA6FD3": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": {
+     "Fn::Select": [
+      1,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.192.0/18",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Isolated"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Isolated"
+     },
+     {
+      "Key": "Name",
+      "Value": "TheraScout-Data/TheraScoutVpc/IsolatedSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "TheraScoutVpcE50A829F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Data/TheraScoutVpc/IsolatedSubnet2/Subnet"
+   }
+  },
+  "TheraScoutVpcIsolatedSubnet2RouteTable411571C4": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "TheraScout-Data/TheraScoutVpc/IsolatedSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "TheraScoutVpcE50A829F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Data/TheraScoutVpc/IsolatedSubnet2/RouteTable"
+   }
+  },
+  "TheraScoutVpcIsolatedSubnet2RouteTableAssociation2101343C": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "TheraScoutVpcIsolatedSubnet2RouteTable411571C4"
+    },
+    "SubnetId": {
+     "Ref": "TheraScoutVpcIsolatedSubnet2Subnet92CA6FD3"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Data/TheraScoutVpc/IsolatedSubnet2/RouteTableAssociation"
+   }
+  },
+  "TheraScoutVpcIGW7788A270": {
+   "Type": "AWS::EC2::InternetGateway",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "TheraScout-Data/TheraScoutVpc"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Data/TheraScoutVpc/IGW"
+   }
+  },
+  "TheraScoutVpcVPCGW6F0CB96C": {
+   "Type": "AWS::EC2::VPCGatewayAttachment",
+   "Properties": {
+    "InternetGatewayId": {
+     "Ref": "TheraScoutVpcIGW7788A270"
+    },
+    "VpcId": {
+     "Ref": "TheraScoutVpcE50A829F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Data/TheraScoutVpc/VPCGW"
+   }
+  },
+  "MetadataDbSubnetGroupF07290CB": {
+   "Type": "AWS::RDS::DBSubnetGroup",
+   "Properties": {
+    "DBSubnetGroupDescription": "Subnet group for MetadataDb database",
+    "SubnetIds": [
+     {
+      "Ref": "TheraScoutVpcIsolatedSubnet1Subnet6C0F64E9"
+     },
+     {
+      "Ref": "TheraScoutVpcIsolatedSubnet2Subnet92CA6FD3"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Data/MetadataDb/SubnetGroup/Default"
+   }
+  },
+  "MetadataDbSecurityGroup67D26516": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "Security group for MetadataDb database",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "TheraScoutVpcE50A829F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Data/MetadataDb/SecurityGroup/Resource"
+   }
+  },
+  "TheraScoutDataMetadataDbSecret32610CE63fdaad7efa858a3daf9490cf0a702aeb": {
+   "Type": "AWS::SecretsManager::Secret",
+   "Properties": {
+    "Description": {
+     "Fn::Join": [
+      "",
+      [
+       "Generated by the CDK for stack: ",
+       {
+        "Ref": "AWS::StackName"
+       }
+      ]
+     ]
+    },
+    "GenerateSecretString": {
+     "ExcludeCharacters": " %+~`#$&*()|[]{}:;<>?!'/@\"\\",
+     "GenerateStringKey": "password",
+     "PasswordLength": 30,
+     "SecretStringTemplate": "{\"username\":\"therascout_admin\"}"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Data/MetadataDb/Secret/Resource"
+   }
+  },
+  "MetadataDbSecretAttachmentFC4323B9": {
+   "Type": "AWS::SecretsManager::SecretTargetAttachment",
+   "Properties": {
+    "SecretId": {
+     "Ref": "TheraScoutDataMetadataDbSecret32610CE63fdaad7efa858a3daf9490cf0a702aeb"
+    },
+    "TargetId": {
+     "Ref": "MetadataDb834921EB"
+    },
+    "TargetType": "AWS::RDS::DBInstance"
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Data/MetadataDb/Secret/Attachment/Resource"
+   }
+  },
+  "MetadataDb834921EB": {
+   "Type": "AWS::RDS::DBInstance",
+   "Properties": {
+    "AllocatedStorage": "20",
+    "CopyTagsToSnapshot": true,
+    "DBInstanceClass": "db.t4g.micro",
+    "DBName": "therascout",
+    "DBSubnetGroupName": {
+     "Ref": "MetadataDbSubnetGroupF07290CB"
+    },
+    "DeletionProtection": false,
+    "Engine": "postgres",
+    "EngineVersion": "16",
+    "MasterUserPassword": {
+     "Fn::Join": [
+      "",
+      [
+       "{{resolve:secretsmanager:",
+       {
+        "Ref": "TheraScoutDataMetadataDbSecret32610CE63fdaad7efa858a3daf9490cf0a702aeb"
+       },
+       ":SecretString:password::}}"
+      ]
+     ]
+    },
+    "MasterUsername": "therascout_admin",
+    "MultiAZ": false,
+    "PubliclyAccessible": false,
+    "StorageType": "gp3",
+    "VPCSecurityGroups": [
+     {
+      "Fn::GetAtt": [
+       "MetadataDbSecurityGroup67D26516",
+       "GroupId"
+      ]
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Data/MetadataDb/Resource"
+   }
+  },
+  "VectorCollection": {
+   "Type": "AWS::OpenSearchServerless::Collection",
+   "Properties": {
+    "Description": "RAG vector store for disease, research, trial and treatment embeddings",
+    "Name": "therascout-vectors",
+    "Type": "VECTORSEARCH"
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Data/VectorCollection"
+   }
+  },
+  "VectorCollectionAccessPolicy": {
+   "Type": "AWS::OpenSearchServerless::AccessPolicy",
+   "Properties": {
+    "Name": "therascout-vectors-access",
+    "Policy": "[{\"Rules\":[{\"ResourceType\":\"collection\",\"Resource\":[\"collection/therascout-vectors\"],\"Permission\":[\"aoss:*\"]},{\"ResourceType\":\"index\",\"Resource\":[\"index/therascout-vectors/*\"],\"Permission\":[\"aoss:*\"]}],\"Principal\":[\"*\"]}]",
+    "Type": "data"
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Data/VectorCollectionAccessPolicy"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/12Qy24CMQxFv4V9SHm03fOQELsRg9hWHuNCICQodkCjUf69YsIwqCvfnFz7Wp7o8fdIjwZw5yHuz0NrKt2UAnhWcOefhqe6mUc8k6jFr8sqKcKJbnZXfLBdsVBFrKzBMlYu+3q18VFoC5WlnvdsxuzRgBjvXmZVBHMDoX7G2gkFR7ICoTvUz9DnayYCeLyQE1USxmCkXgUfr23cO0gq7Fk3SxCogGntWMAhqZzz6lnO30HnLglDXmY57zqT4pbyBRwcKOgmRz6MuWwhHEjeNnwZ/v8k5a/kmCDgkSncKFhibicuvLWE3YlmiMRceGuwTkltiH0M2B6300kVtRy9+5jq8af+GpzYmGGITsyF9CbXP+yh5WD3AQAA"
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Data/CDKMetadata/Default"
+   }
+  }
+ },
+ "Outputs": {
+  "ExportsOutputFnGetAttRawDataBucket57F26C03Arn307EA583": {
+   "Value": {
+    "Fn::GetAtt": [
+     "RawDataBucket57F26C03",
+     "Arn"
+    ]
+   },
+   "Export": {
+    "Name": "TheraScout-Data:ExportsOutputFnGetAttRawDataBucket57F26C03Arn307EA583"
+   }
+  },
+  "ExportsOutputRefRawDataBucket57F26C0354920F72": {
+   "Value": {
+    "Ref": "RawDataBucket57F26C03"
+   },
+   "Export": {
+    "Name": "TheraScout-Data:ExportsOutputRefRawDataBucket57F26C0354920F72"
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

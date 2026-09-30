@@ -1,0 +1,652 @@
+{
+  "version": "38.0.1",
+  "artifacts": {
+    "TheraScout-Data.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "TheraScout-Data.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "TheraScout-Data": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/us-east-1",
+      "properties": {
+        "templateFile": "TheraScout-Data.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "notificationArns": [],
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-us-east-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-us-east-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1/070bc843ab9b2ff47fe4c858e30ef86eb430c32af3c65f56ce4f57819f37b673.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "TheraScout-Data.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-us-east-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "TheraScout-Data.assets"
+      ],
+      "metadata": {
+        "/TheraScout-Data/RawDataBucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RawDataBucket57F26C03"
+          }
+        ],
+        "/TheraScout-Data/TheraScoutVpc/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TheraScoutVpcE50A829F"
+          }
+        ],
+        "/TheraScout-Data/TheraScoutVpc/PublicSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TheraScoutVpcPublicSubnet1Subnet1D1E3D59"
+          }
+        ],
+        "/TheraScout-Data/TheraScoutVpc/PublicSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TheraScoutVpcPublicSubnet1RouteTableC3A5D3A6"
+          }
+        ],
+        "/TheraScout-Data/TheraScoutVpc/PublicSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TheraScoutVpcPublicSubnet1RouteTableAssociation141E3C8C"
+          }
+        ],
+        "/TheraScout-Data/TheraScoutVpc/PublicSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TheraScoutVpcPublicSubnet1DefaultRouteCC7D9A74"
+          }
+        ],
+        "/TheraScout-Data/TheraScoutVpc/PublicSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TheraScoutVpcPublicSubnet2Subnet9F79940C"
+          }
+        ],
+        "/TheraScout-Data/TheraScoutVpc/PublicSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TheraScoutVpcPublicSubnet2RouteTable9C9D31B3"
+          }
+        ],
+        "/TheraScout-Data/TheraScoutVpc/PublicSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TheraScoutVpcPublicSubnet2RouteTableAssociation58E8A124"
+          }
+        ],
+        "/TheraScout-Data/TheraScoutVpc/PublicSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TheraScoutVpcPublicSubnet2DefaultRoute1E7AA5AA"
+          }
+        ],
+        "/TheraScout-Data/TheraScoutVpc/IsolatedSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TheraScoutVpcIsolatedSubnet1Subnet6C0F64E9"
+          }
+        ],
+        "/TheraScout-Data/TheraScoutVpc/IsolatedSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TheraScoutVpcIsolatedSubnet1RouteTableBDB6E418"
+          }
+        ],
+        "/TheraScout-Data/TheraScoutVpc/IsolatedSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TheraScoutVpcIsolatedSubnet1RouteTableAssociation41D7FE31"
+          }
+        ],
+        "/TheraScout-Data/TheraScoutVpc/IsolatedSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TheraScoutVpcIsolatedSubnet2Subnet92CA6FD3"
+          }
+        ],
+        "/TheraScout-Data/TheraScoutVpc/IsolatedSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TheraScoutVpcIsolatedSubnet2RouteTable411571C4"
+          }
+        ],
+        "/TheraScout-Data/TheraScoutVpc/IsolatedSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TheraScoutVpcIsolatedSubnet2RouteTableAssociation2101343C"
+          }
+        ],
+        "/TheraScout-Data/TheraScoutVpc/IGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TheraScoutVpcIGW7788A270"
+          }
+        ],
+        "/TheraScout-Data/TheraScoutVpc/VPCGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TheraScoutVpcVPCGW6F0CB96C"
+          }
+        ],
+        "/TheraScout-Data/MetadataDb/SubnetGroup/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MetadataDbSubnetGroupF07290CB"
+          }
+        ],
+        "/TheraScout-Data/MetadataDb/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MetadataDbSecurityGroup67D26516"
+          }
+        ],
+        "/TheraScout-Data/MetadataDb/Secret/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TheraScoutDataMetadataDbSecret32610CE63fdaad7efa858a3daf9490cf0a702aeb"
+          }
+        ],
+        "/TheraScout-Data/MetadataDb/Secret/Attachment/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MetadataDbSecretAttachmentFC4323B9"
+          }
+        ],
+        "/TheraScout-Data/MetadataDb/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MetadataDb834921EB"
+          }
+        ],
+        "/TheraScout-Data/VectorCollection": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VectorCollection"
+          }
+        ],
+        "/TheraScout-Data/VectorCollectionAccessPolicy": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VectorCollectionAccessPolicy"
+          }
+        ],
+        "/TheraScout-Data/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/TheraScout-Data/Exports/Output{\"Fn::GetAtt\":[\"RawDataBucket57F26C03\",\"Arn\"]}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputFnGetAttRawDataBucket57F26C03Arn307EA583"
+          }
+        ],
+        "/TheraScout-Data/Exports/Output{\"Ref\":\"RawDataBucket57F26C03\"}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputRefRawDataBucket57F26C0354920F72"
+          }
+        ],
+        "/TheraScout-Data/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/TheraScout-Data/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "TheraScout-Data"
+    },
+    "TheraScout-Agents.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "TheraScout-Agents.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "TheraScout-Agents": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/us-east-1",
+      "properties": {
+        "templateFile": "TheraScout-Agents.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "notificationArns": [],
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-us-east-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-us-east-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1/0c1ffcd72551b33adb7e3e1017fcca6a26fb0f9a1d5fba5a52c267d07c28e773.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "TheraScout-Agents.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-us-east-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "TheraScout-Data",
+        "TheraScout-Agents.assets"
+      ],
+      "metadata": {
+        "/TheraScout-Agents/query_globocan_data/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "queryglobocandataServiceRole3794C946"
+          }
+        ],
+        "/TheraScout-Agents/query_globocan_data/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "queryglobocandataServiceRoleDefaultPolicy1CA63E8A"
+          }
+        ],
+        "/TheraScout-Agents/query_globocan_data/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "queryglobocandata5C4D6A01"
+          }
+        ],
+        "/TheraScout-Agents/query_pubmed/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "querypubmedServiceRole8260686A"
+          }
+        ],
+        "/TheraScout-Agents/query_pubmed/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "querypubmedServiceRoleDefaultPolicy3EDC7FD6"
+          }
+        ],
+        "/TheraScout-Agents/query_pubmed/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "querypubmedA6734303"
+          }
+        ],
+        "/TheraScout-Agents/query_clinicaltrials/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "queryclinicaltrialsServiceRoleD2A2DD46"
+          }
+        ],
+        "/TheraScout-Agents/query_clinicaltrials/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "queryclinicaltrialsServiceRoleDefaultPolicyA252755D"
+          }
+        ],
+        "/TheraScout-Agents/query_clinicaltrials/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "queryclinicaltrialsD13471DE"
+          }
+        ],
+        "/TheraScout-Agents/query_openfda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "queryopenfdaServiceRole78BA9540"
+          }
+        ],
+        "/TheraScout-Agents/query_openfda/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "queryopenfdaServiceRoleDefaultPolicy038534F7"
+          }
+        ],
+        "/TheraScout-Agents/query_openfda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "queryopenfdaDA8C78AE"
+          }
+        ],
+        "/TheraScout-Agents/check_data_scope/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "checkdatascopeServiceRoleAEB58C65"
+          }
+        ],
+        "/TheraScout-Agents/check_data_scope/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "checkdatascopeServiceRoleDefaultPolicy1CF89F80"
+          }
+        ],
+        "/TheraScout-Agents/check_data_scope/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "checkdatascope218F1612"
+          }
+        ],
+        "/TheraScout-Agents/enrich_enterprise_data/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "enrichenterprisedataServiceRole8D386827"
+          }
+        ],
+        "/TheraScout-Agents/enrich_enterprise_data/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "enrichenterprisedataServiceRoleDefaultPolicyBD1438B1"
+          }
+        ],
+        "/TheraScout-Agents/enrich_enterprise_data/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "enrichenterprisedata41320ADA"
+          }
+        ],
+        "/TheraScout-Agents/invoke_agentcore_agent/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "invokeagentcoreagentServiceRole67C751FB"
+          }
+        ],
+        "/TheraScout-Agents/invoke_agentcore_agent/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "invokeagentcoreagentServiceRoleDefaultPolicy30EE862B"
+          }
+        ],
+        "/TheraScout-Agents/invoke_agentcore_agent/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "invokeagentcoreagent3D525339"
+          }
+        ],
+        "/TheraScout-Agents/score_opportunities_fallback/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "scoreopportunitiesfallbackServiceRole656E7DC4"
+          }
+        ],
+        "/TheraScout-Agents/score_opportunities_fallback/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "scoreopportunitiesfallbackServiceRoleDefaultPolicy8C4FD7C1"
+          }
+        ],
+        "/TheraScout-Agents/score_opportunities_fallback/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "scoreopportunitiesfallback839A520E"
+          }
+        ],
+        "/TheraScout-Agents/compose_pdf_report/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "composepdfreportServiceRoleBE1F149D"
+          }
+        ],
+        "/TheraScout-Agents/compose_pdf_report/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "composepdfreportServiceRoleDefaultPolicy23BA16A4"
+          }
+        ],
+        "/TheraScout-Agents/compose_pdf_report/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "composepdfreport136B7298"
+          }
+        ],
+        "/TheraScout-Agents/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/TheraScout-Agents/Exports/Output{\"Fn::GetAtt\":[\"queryglobocandata5C4D6A01\",\"Arn\"]}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputFnGetAttqueryglobocandata5C4D6A01ArnE2990389"
+          }
+        ],
+        "/TheraScout-Agents/Exports/Output{\"Fn::GetAtt\":[\"querypubmedA6734303\",\"Arn\"]}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputFnGetAttquerypubmedA6734303Arn2728423C"
+          }
+        ],
+        "/TheraScout-Agents/Exports/Output{\"Fn::GetAtt\":[\"queryclinicaltrialsD13471DE\",\"Arn\"]}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputFnGetAttqueryclinicaltrialsD13471DEArn4DBED974"
+          }
+        ],
+        "/TheraScout-Agents/Exports/Output{\"Fn::GetAtt\":[\"queryopenfdaDA8C78AE\",\"Arn\"]}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputFnGetAttqueryopenfdaDA8C78AEArn10D103B5"
+          }
+        ],
+        "/TheraScout-Agents/Exports/Output{\"Fn::GetAtt\":[\"checkdatascope218F1612\",\"Arn\"]}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputFnGetAttcheckdatascope218F1612Arn161C1C9A"
+          }
+        ],
+        "/TheraScout-Agents/Exports/Output{\"Fn::GetAtt\":[\"enrichenterprisedata41320ADA\",\"Arn\"]}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputFnGetAttenrichenterprisedata41320ADAArn18C9D53B"
+          }
+        ],
+        "/TheraScout-Agents/Exports/Output{\"Fn::GetAtt\":[\"invokeagentcoreagent3D525339\",\"Arn\"]}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputFnGetAttinvokeagentcoreagent3D525339ArnDBB8D1A8"
+          }
+        ],
+        "/TheraScout-Agents/Exports/Output{\"Fn::GetAtt\":[\"scoreopportunitiesfallback839A520E\",\"Arn\"]}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputFnGetAttscoreopportunitiesfallback839A520EArn6D4C7055"
+          }
+        ],
+        "/TheraScout-Agents/Exports/Output{\"Fn::GetAtt\":[\"composepdfreport136B7298\",\"Arn\"]}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputFnGetAttcomposepdfreport136B7298ArnEF0C3B8C"
+          }
+        ],
+        "/TheraScout-Agents/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/TheraScout-Agents/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "TheraScout-Agents"
+    },
+    "TheraScout-Orchestration.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "TheraScout-Orchestration.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "TheraScout-Orchestration": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/us-east-1",
+      "properties": {
+        "templateFile": "TheraScout-Orchestration.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "notificationArns": [],
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-us-east-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-us-east-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1/16e0d0246b4dfb6e0acb3bc7490cef29fb07b93b877f1281b74b1793a4c5dd23.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "TheraScout-Orchestration.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-us-east-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "TheraScout-Agents",
+        "TheraScout-Orchestration.assets"
+      ],
+      "metadata": {
+        "/TheraScout-Orchestration/TheraScoutPipeline/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TheraScoutPipelineRoleF2752622"
+          }
+        ],
+        "/TheraScout-Orchestration/TheraScoutPipeline/Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TheraScoutPipelineRoleDefaultPolicy43AFA432"
+          }
+        ],
+        "/TheraScout-Orchestration/TheraScoutPipeline/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TheraScoutPipelineDEF6CA5E"
+          }
+        ],
+        "/TheraScout-Orchestration/StartScanApi/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "StartScanApiServiceRole24BD2031"
+          }
+        ],
+        "/TheraScout-Orchestration/StartScanApi/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "StartScanApiServiceRoleDefaultPolicy8942FEFB"
+          }
+        ],
+        "/TheraScout-Orchestration/StartScanApi/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "StartScanApi87EF1867"
+          }
+        ],
+        "/TheraScout-Orchestration/TheraScoutApi/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TheraScoutApi4E179710"
+          }
+        ],
+        "/TheraScout-Orchestration/TheraScoutApi/CloudWatchRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TheraScoutApiCloudWatchRoleC648B5BD"
+          }
+        ],
+        "/TheraScout-Orchestration/TheraScoutApi/Account": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TheraScoutApiAccountD6B959F0"
+          }
+        ],
+        "/TheraScout-Orchestration/TheraScoutApi/Deployment/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TheraScoutApiDeployment3B8197F874f08aed18edd369bc5a6fc859df2ef3"
+          }
+        ],
+        "/TheraScout-Orchestration/TheraScoutApi/DeploymentStage.prod/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TheraScoutApiDeploymentStageprod2F953B8F"
+          }
+        ],
+        "/TheraScout-Orchestration/TheraScoutApi/Endpoint": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TheraScoutApiEndpoint7041387E"
+          }
+        ],
+        "/TheraScout-Orchestration/TheraScoutApi/Default/scan/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TheraScoutApiscanA05D833F"
+          }
+        ],
+        "/TheraScout-Orchestration/TheraScoutApi/Default/scan/POST/ApiPermission.TheraScoutOrchestrationTheraScoutApiA315C89E.POST..scan": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TheraScoutApiscanPOSTApiPermissionTheraScoutOrchestrationTheraScoutApiA315C89EPOSTscan5BA82C39"
+          }
+        ],
+        "/TheraScout-Orchestration/TheraScoutApi/Default/scan/POST/ApiPermission.Test.TheraScoutOrchestrationTheraScoutApiA315C89E.POST..scan": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TheraScoutApiscanPOSTApiPermissionTestTheraScoutOrchestrationTheraScoutApiA315C89EPOSTscanEFABC9B3"
+          }
+        ],
+        "/TheraScout-Orchestration/TheraScoutApi/Default/scan/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TheraScoutApiscanPOSTD2776385"
+          }
+        ],
+        "/TheraScout-Orchestration/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/TheraScout-Orchestration/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/TheraScout-Orchestration/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "TheraScout-Orchestration"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}

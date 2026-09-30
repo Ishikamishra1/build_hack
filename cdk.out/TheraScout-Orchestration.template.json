@@ -1,0 +1,686 @@
+{
+ "Resources": {
+  "TheraScoutPipelineRoleF2752622": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "states.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Orchestration/TheraScoutPipeline/Role/Resource"
+   }
+  },
+  "TheraScoutPipelineRoleDefaultPolicy43AFA432": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "lambda:InvokeFunction",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::ImportValue": "TheraScout-Agents:ExportsOutputFnGetAttqueryglobocandata5C4D6A01ArnE2990389"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::ImportValue": "TheraScout-Agents:ExportsOutputFnGetAttqueryglobocandata5C4D6A01ArnE2990389"
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "lambda:InvokeFunction",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::ImportValue": "TheraScout-Agents:ExportsOutputFnGetAttquerypubmedA6734303Arn2728423C"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::ImportValue": "TheraScout-Agents:ExportsOutputFnGetAttquerypubmedA6734303Arn2728423C"
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "lambda:InvokeFunction",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::ImportValue": "TheraScout-Agents:ExportsOutputFnGetAttqueryclinicaltrialsD13471DEArn4DBED974"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::ImportValue": "TheraScout-Agents:ExportsOutputFnGetAttqueryclinicaltrialsD13471DEArn4DBED974"
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "lambda:InvokeFunction",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::ImportValue": "TheraScout-Agents:ExportsOutputFnGetAttqueryopenfdaDA8C78AEArn10D103B5"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::ImportValue": "TheraScout-Agents:ExportsOutputFnGetAttqueryopenfdaDA8C78AEArn10D103B5"
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "lambda:InvokeFunction",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::ImportValue": "TheraScout-Agents:ExportsOutputFnGetAttcheckdatascope218F1612Arn161C1C9A"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::ImportValue": "TheraScout-Agents:ExportsOutputFnGetAttcheckdatascope218F1612Arn161C1C9A"
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "lambda:InvokeFunction",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::ImportValue": "TheraScout-Agents:ExportsOutputFnGetAttenrichenterprisedata41320ADAArn18C9D53B"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::ImportValue": "TheraScout-Agents:ExportsOutputFnGetAttenrichenterprisedata41320ADAArn18C9D53B"
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "lambda:InvokeFunction",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::ImportValue": "TheraScout-Agents:ExportsOutputFnGetAttinvokeagentcoreagent3D525339ArnDBB8D1A8"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::ImportValue": "TheraScout-Agents:ExportsOutputFnGetAttinvokeagentcoreagent3D525339ArnDBB8D1A8"
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "lambda:InvokeFunction",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::ImportValue": "TheraScout-Agents:ExportsOutputFnGetAttscoreopportunitiesfallback839A520EArn6D4C7055"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::ImportValue": "TheraScout-Agents:ExportsOutputFnGetAttscoreopportunitiesfallback839A520EArn6D4C7055"
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "lambda:InvokeFunction",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::ImportValue": "TheraScout-Agents:ExportsOutputFnGetAttcomposepdfreport136B7298ArnEF0C3B8C"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::ImportValue": "TheraScout-Agents:ExportsOutputFnGetAttcomposepdfreport136B7298ArnEF0C3B8C"
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "TheraScoutPipelineRoleDefaultPolicy43AFA432",
+    "Roles": [
+     {
+      "Ref": "TheraScoutPipelineRoleF2752622"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Orchestration/TheraScoutPipeline/Role/DefaultPolicy/Resource"
+   }
+  },
+  "TheraScoutPipelineDEF6CA5E": {
+   "Type": "AWS::StepFunctions::StateMachine",
+   "Properties": {
+    "DefinitionString": {
+     "Fn::Join": [
+      "",
+      [
+       "{\n  \"Comment\": \"TheraScout pipeline. Each state below corresponds directly to a box in the agent pipeline diagram: Ingest -> Choice -> (Analyze in parallel | Enrich then Analyze) -> GapScore -> Report.\",\n  \"StartAt\": \"Agent_Ingest_CheckDataScope\",\n  \"States\": {\n    \"Agent_Ingest_CheckDataScope\": {\n      \"Type\": \"Task\",\n      \"Comment\": \"Diagram box: Agent: ingest â€” uses the check_data_scope tool\",\n      \"Resource\": \"",
+       {
+        "Fn::ImportValue": "TheraScout-Agents:ExportsOutputFnGetAttcheckdatascope218F1612Arn161C1C9A"
+       },
+       "\",\n      \"ResultPath\": \"$.scope_check\",\n      \"Next\": \"PublicDataSufficient\",\n      \"Retry\": [\n        {\n          \"ErrorEquals\": [\n            \"Lambda.ServiceException\",\n            \"Lambda.AWSLambdaException\",\n            \"Lambda.SdkClientException\",\n            \"Lambda.TooManyRequestsException\"\n          ],\n          \"IntervalSeconds\": 2,\n          \"MaxAttempts\": 3,\n          \"BackoffRate\": 2\n        }\n      ]\n    },\n    \"PublicDataSufficient\": {\n      \"Type\": \"Choice\",\n      \"Comment\": \"Diagram diamond: Public data sufficient?\",\n      \"Choices\": [\n        {\n          \"Variable\": \"$.scope_check.sufficient\",\n          \"BooleanEquals\": true,\n          \"Next\": \"Agent_Analyze_Parallel\"\n        }\n      ],\n      \"Default\": \"Agent_Enrich_EnterpriseData\"\n    },\n    \"Agent_Enrich_EnterpriseData\": {\n      \"Type\": \"Task\",\n      \"Comment\": \"Diagram box: Agent: enrich -> AgentCore Gateway -> Enterprise Data Store (MOCKED). Loops back into Analyze once enriched.\",\n      \"Resource\": \"",
+       {
+        "Fn::ImportValue": "TheraScout-Agents:ExportsOutputFnGetAttenrichenterprisedata41320ADAArn18C9D53B"
+       },
+       "\",\n      \"ResultPath\": \"$.enrichment\",\n      \"Next\": \"Agent_Analyze_Parallel\",\n      \"Retry\": [\n        {\n          \"ErrorEquals\": [\n            \"Lambda.ServiceException\",\n            \"Lambda.AWSLambdaException\",\n            \"Lambda.SdkClientException\",\n            \"Lambda.TooManyRequestsException\"\n          ],\n          \"IntervalSeconds\": 2,\n          \"MaxAttempts\": 3,\n          \"BackoffRate\": 2\n        }\n      ]\n    },\n    \"Agent_Analyze_Parallel\": {\n      \"Type\": \"Parallel\",\n      \"Comment\": \"Diagram box: Agent: analyze â€” the broadcast/gather fan-out to all 6 specialist agents, run in parallel. MVP NOTE: each branch below currently calls its data-fetch tool directly (Milestone 1-3 of the build order). Once a branch's real AgentCore agent is built, swap its Resource to the invoke_agentcore_agent Lambda (see Agent_GapAnalysisAndScoring below for that pattern) so the agent can reason over the fetched data rather than just returning it raw.\",\n      \"ResultPath\": \"$.agent_findings\",\n      \"Branches\": [\n        {\n          \"StartAt\": \"DiseaseAgent\",\n          \"States\": {\n            \"DiseaseAgent\": {\n              \"Type\": \"Task\",\n              \"Resource\": \"",
+       {
+        "Fn::ImportValue": "TheraScout-Agents:ExportsOutputFnGetAttqueryglobocandata5C4D6A01ArnE2990389"
+       },
+       "\",\n              \"End\": true,\n              \"Retry\": [\n                {\n                  \"ErrorEquals\": [\n                    \"Lambda.ServiceException\",\n                    \"Lambda.AWSLambdaException\",\n                    \"Lambda.SdkClientException\",\n                    \"Lambda.TooManyRequestsException\"\n                  ],\n                  \"IntervalSeconds\": 2,\n                  \"MaxAttempts\": 3,\n                  \"BackoffRate\": 2\n                }\n              ]\n            }\n          }\n        },\n        {\n          \"StartAt\": \"TreatmentAgent\",\n          \"States\": {\n            \"TreatmentAgent\": {\n              \"Type\": \"Task\",\n              \"Resource\": \"",
+       {
+        "Fn::ImportValue": "TheraScout-Agents:ExportsOutputFnGetAttqueryopenfdaDA8C78AEArn10D103B5"
+       },
+       "\",\n              \"End\": true,\n              \"Retry\": [\n                {\n                  \"ErrorEquals\": [\n                    \"Lambda.ServiceException\",\n                    \"Lambda.AWSLambdaException\",\n                    \"Lambda.SdkClientException\",\n                    \"Lambda.TooManyRequestsException\"\n                  ],\n                  \"IntervalSeconds\": 2,\n                  \"MaxAttempts\": 3,\n                  \"BackoffRate\": 2\n                }\n              ]\n            }\n          }\n        },\n        {\n          \"StartAt\": \"ResearchAgent\",\n          \"States\": {\n            \"ResearchAgent\": {\n              \"Type\": \"Task\",\n              \"Resource\": \"",
+       {
+        "Fn::ImportValue": "TheraScout-Agents:ExportsOutputFnGetAttquerypubmedA6734303Arn2728423C"
+       },
+       "\",\n              \"End\": true,\n              \"Retry\": [\n                {\n                  \"ErrorEquals\": [\n                    \"Lambda.ServiceException\",\n                    \"Lambda.AWSLambdaException\",\n                    \"Lambda.SdkClientException\",\n                    \"Lambda.TooManyRequestsException\"\n                  ],\n                  \"IntervalSeconds\": 2,\n                  \"MaxAttempts\": 3,\n                  \"BackoffRate\": 2\n                }\n              ]\n            }\n          }\n        },\n        {\n          \"StartAt\": \"ClinicalTrialAgent\",\n          \"States\": {\n            \"ClinicalTrialAgent\": {\n              \"Type\": \"Task\",\n              \"Resource\": \"",
+       {
+        "Fn::ImportValue": "TheraScout-Agents:ExportsOutputFnGetAttqueryclinicaltrialsD13471DEArn4DBED974"
+       },
+       "\",\n              \"End\": true,\n              \"Retry\": [\n                {\n                  \"ErrorEquals\": [\n                    \"Lambda.ServiceException\",\n                    \"Lambda.AWSLambdaException\",\n                    \"Lambda.SdkClientException\",\n                    \"Lambda.TooManyRequestsException\"\n                  ],\n                  \"IntervalSeconds\": 2,\n                  \"MaxAttempts\": 3,\n                  \"BackoffRate\": 2\n                }\n              ]\n            }\n          }\n        },\n        {\n          \"StartAt\": \"CompetitionAgent\",\n          \"States\": {\n            \"CompetitionAgent\": {\n              \"Type\": \"Task\",\n              \"Comment\": \"MVP: derived from ClinicalTrials.gov sponsor field; a dedicated tool can be split out later\",\n              \"Resource\": \"",
+       {
+        "Fn::ImportValue": "TheraScout-Agents:ExportsOutputFnGetAttqueryclinicaltrialsD13471DEArn4DBED974"
+       },
+       "\",\n              \"End\": true,\n              \"Retry\": [\n                {\n                  \"ErrorEquals\": [\n                    \"Lambda.ServiceException\",\n                    \"Lambda.AWSLambdaException\",\n                    \"Lambda.SdkClientException\",\n                    \"Lambda.TooManyRequestsException\"\n                  ],\n                  \"IntervalSeconds\": 2,\n                  \"MaxAttempts\": 3,\n                  \"BackoffRate\": 2\n                }\n              ]\n            }\n          }\n        },\n        {\n          \"StartAt\": \"TrendAgent\",\n          \"States\": {\n            \"TrendAgent\": {\n              \"Type\": \"Task\",\n              \"Comment\": \"MVP: derived from PubMed publication-date trends; a dedicated tool can be split out later\",\n              \"Resource\": \"",
+       {
+        "Fn::ImportValue": "TheraScout-Agents:ExportsOutputFnGetAttquerypubmedA6734303Arn2728423C"
+       },
+       "\",\n              \"End\": true,\n              \"Retry\": [\n                {\n                  \"ErrorEquals\": [\n                    \"Lambda.ServiceException\",\n                    \"Lambda.AWSLambdaException\",\n                    \"Lambda.SdkClientException\",\n                    \"Lambda.TooManyRequestsException\"\n                  ],\n                  \"IntervalSeconds\": 2,\n                  \"MaxAttempts\": 3,\n                  \"BackoffRate\": 2\n                }\n              ]\n            }\n          }\n        }\n      ],\n      \"Next\": \"Agent_GapAnalysisAndScoring\"\n    },\n    \"Agent_GapAnalysisAndScoring\": {\n      \"Type\": \"Task\",\n      \"Comment\": \"Diagram box: Agent: gap_score â€” combines all 6 findings, applies data/scoring_weights.json, ranks Top 5-6. TEMPORARILY using the Bedrock-free deterministic fallback scorer because bedrock:InvokeModel is denied by the org SCP. To restore real agent reasoning, swap Resource back to ",
+       {
+        "Fn::ImportValue": "TheraScout-Agents:ExportsOutputFnGetAttinvokeagentcoreagent3D525339ArnDBB8D1A8"
+       },
+       " and restore Parameters with agent_runtime_id=gap_scoring_agent, session_id.$=$$.Execution.Name, payload.$=$.agent_findings, and drop InputPath.\",\n      \"Resource\": \"",
+       {
+        "Fn::ImportValue": "TheraScout-Agents:ExportsOutputFnGetAttscoreopportunitiesfallback839A520EArn6D4C7055"
+       },
+       "\",\n      \"InputPath\": \"$.agent_findings\",\n      \"ResultPath\": \"$.ranked_opportunities\",\n      \"Retry\": [\n        {\n          \"ErrorEquals\": [\n            \"Lambda.ServiceException\",\n            \"Lambda.AWSLambdaException\",\n            \"Lambda.SdkClientException\",\n            \"Lambda.TooManyRequestsException\"\n          ],\n          \"IntervalSeconds\": 2,\n          \"MaxAttempts\": 3,\n          \"BackoffRate\": 2\n        }\n      ],\n      \"Next\": \"Agent_Report_ComposePdf\"\n    },\n    \"Agent_Report_ComposePdf\": {\n      \"Type\": \"Task\",\n      \"Comment\": \"Diagram box: Agent: report â€” Report Composer (ReportLab)\",\n      \"Resource\": \"",
+       {
+        "Fn::ImportValue": "TheraScout-Agents:ExportsOutputFnGetAttcomposepdfreport136B7298ArnEF0C3B8C"
+       },
+       "\",\n      \"ResultPath\": \"$.report\",\n      \"End\": true,\n      \"Retry\": [\n        {\n          \"ErrorEquals\": [\n            \"Lambda.ServiceException\",\n            \"Lambda.AWSLambdaException\",\n            \"Lambda.SdkClientException\",\n            \"Lambda.TooManyRequestsException\"\n          ],\n          \"IntervalSeconds\": 2,\n          \"MaxAttempts\": 3,\n          \"BackoffRate\": 2\n        }\n      ]\n    }\n  }\n}\n"
+      ]
+     ]
+    },
+    "RoleArn": {
+     "Fn::GetAtt": [
+      "TheraScoutPipelineRoleF2752622",
+      "Arn"
+     ]
+    },
+    "StateMachineName": "TheraScoutOpportunityScan"
+   },
+   "DependsOn": [
+    "TheraScoutPipelineRoleDefaultPolicy43AFA432",
+    "TheraScoutPipelineRoleF2752622"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Orchestration/TheraScoutPipeline/Resource"
+   }
+  },
+  "StartScanApiServiceRole24BD2031": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Orchestration/StartScanApi/ServiceRole/Resource"
+   }
+  },
+  "StartScanApiServiceRoleDefaultPolicy8942FEFB": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "states:StartExecution",
+       "Effect": "Allow",
+       "Resource": {
+        "Ref": "TheraScoutPipelineDEF6CA5E"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "StartScanApiServiceRoleDefaultPolicy8942FEFB",
+    "Roles": [
+     {
+      "Ref": "StartScanApiServiceRole24BD2031"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Orchestration/StartScanApi/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "StartScanApi87EF1867": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "ZipFile": "\nimport json, os, uuid, boto3\n\nsfn = boto3.client(\"stepfunctions\")\n\ndef lambda_handler(event, context):\n    body = json.loads(event.get(\"body\") or \"{}\")\n    therapeutic_area = body.get(\"therapeutic_area\", \"Colorectal Cancer\")\n\n    response = sfn.start_execution(\n        stateMachineArn=os.environ[\"STATE_MACHINE_ARN\"],\n        name=f\"scan-{uuid.uuid4()}\",\n        input=json.dumps({\"therapeutic_area\": therapeutic_area}),\n    )\n    return {\n        \"statusCode\": 202,\n        \"headers\": {\"Content-Type\": \"application/json\"},\n        \"body\": json.dumps({\"executionArn\": response[\"executionArn\"]}),\n    }\n"
+    },
+    "Environment": {
+     "Variables": {
+      "STATE_MACHINE_ARN": {
+       "Ref": "TheraScoutPipelineDEF6CA5E"
+      }
+     }
+    },
+    "FunctionName": "therascout-start-scan",
+    "Handler": "handler.lambda_handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "StartScanApiServiceRole24BD2031",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.12",
+    "Timeout": 10
+   },
+   "DependsOn": [
+    "StartScanApiServiceRoleDefaultPolicy8942FEFB",
+    "StartScanApiServiceRole24BD2031"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Orchestration/StartScanApi/Resource"
+   }
+  },
+  "TheraScoutApi4E179710": {
+   "Type": "AWS::ApiGateway::RestApi",
+   "Properties": {
+    "Name": "TheraScoutApi"
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Orchestration/TheraScoutApi/Resource"
+   }
+  },
+  "TheraScoutApiCloudWatchRoleC648B5BD": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "apigateway.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs"
+       ]
+      ]
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Orchestration/TheraScoutApi/CloudWatchRole/Resource"
+   }
+  },
+  "TheraScoutApiAccountD6B959F0": {
+   "Type": "AWS::ApiGateway::Account",
+   "Properties": {
+    "CloudWatchRoleArn": {
+     "Fn::GetAtt": [
+      "TheraScoutApiCloudWatchRoleC648B5BD",
+      "Arn"
+     ]
+    }
+   },
+   "DependsOn": [
+    "TheraScoutApi4E179710"
+   ],
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Orchestration/TheraScoutApi/Account"
+   }
+  },
+  "TheraScoutApiDeployment3B8197F874f08aed18edd369bc5a6fc859df2ef3": {
+   "Type": "AWS::ApiGateway::Deployment",
+   "Properties": {
+    "Description": "Automatically created by the RestApi construct",
+    "RestApiId": {
+     "Ref": "TheraScoutApi4E179710"
+    }
+   },
+   "DependsOn": [
+    "TheraScoutApiscanPOSTD2776385",
+    "TheraScoutApiscanA05D833F"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Orchestration/TheraScoutApi/Deployment/Resource"
+   }
+  },
+  "TheraScoutApiDeploymentStageprod2F953B8F": {
+   "Type": "AWS::ApiGateway::Stage",
+   "Properties": {
+    "DeploymentId": {
+     "Ref": "TheraScoutApiDeployment3B8197F874f08aed18edd369bc5a6fc859df2ef3"
+    },
+    "RestApiId": {
+     "Ref": "TheraScoutApi4E179710"
+    },
+    "StageName": "prod"
+   },
+   "DependsOn": [
+    "TheraScoutApiAccountD6B959F0"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Orchestration/TheraScoutApi/DeploymentStage.prod/Resource"
+   }
+  },
+  "TheraScoutApiscanA05D833F": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "TheraScoutApi4E179710",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "scan",
+    "RestApiId": {
+     "Ref": "TheraScoutApi4E179710"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Orchestration/TheraScoutApi/Default/scan/Resource"
+   }
+  },
+  "TheraScoutApiscanPOSTApiPermissionTheraScoutOrchestrationTheraScoutApiA315C89EPOSTscan5BA82C39": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "StartScanApi87EF1867",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:us-east-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "TheraScoutApi4E179710"
+       },
+       "/",
+       {
+        "Ref": "TheraScoutApiDeploymentStageprod2F953B8F"
+       },
+       "/POST/scan"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Orchestration/TheraScoutApi/Default/scan/POST/ApiPermission.TheraScoutOrchestrationTheraScoutApiA315C89E.POST..scan"
+   }
+  },
+  "TheraScoutApiscanPOSTApiPermissionTestTheraScoutOrchestrationTheraScoutApiA315C89EPOSTscanEFABC9B3": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "StartScanApi87EF1867",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":execute-api:us-east-1:",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":",
+       {
+        "Ref": "TheraScoutApi4E179710"
+       },
+       "/test-invoke-stage/POST/scan"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Orchestration/TheraScoutApi/Default/scan/POST/ApiPermission.Test.TheraScoutOrchestrationTheraScoutApiA315C89E.POST..scan"
+   }
+  },
+  "TheraScoutApiscanPOSTD2776385": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "POST",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "StartScanApi87EF1867",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "TheraScoutApiscanA05D833F"
+    },
+    "RestApiId": {
+     "Ref": "TheraScoutApi4E179710"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Orchestration/TheraScoutApi/Default/scan/POST/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WOS27DMAxEz5K9rCb97dMGXTWo4RygYGTGZqMfLAqGIejuheUUcVd8M0MO+Ch3r1u53cAYKtVeK01nmU4M6ipgDN8pMPpLtIrJ2VASxiOoniyK94td6ywIjEyN0yUqs3aa1DTLhbLQYM4tyPRxK52zNdc4GAqBnM0CPHXAOMIk02e5azDw3lPpv+NeKRctiwN67SaDlmd3pU4M3d+/HYoGg4uDwjcId3HrXPiI3Lt2thbK+d/eV2QfeX2RRT1x7+zDk9w9y5fNTyCqhmiZDMpmmb9tLHUcbAEAAA=="
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Orchestration/CDKMetadata/Default"
+   }
+  }
+ },
+ "Outputs": {
+  "TheraScoutApiEndpoint7041387E": {
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Ref": "TheraScoutApi4E179710"
+      },
+      ".execute-api.us-east-1.",
+      {
+       "Ref": "AWS::URLSuffix"
+      },
+      "/",
+      {
+       "Ref": "TheraScoutApiDeploymentStageprod2F953B8F"
+      },
+      "/"
+     ]
+    ]
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

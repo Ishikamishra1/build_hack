@@ -1,0 +1,1333 @@
+{
+ "Resources": {
+  "queryglobocandataServiceRole3794C946": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Agents/query_globocan_data/ServiceRole/Resource"
+   }
+  },
+  "queryglobocandataServiceRoleDefaultPolicy1CA63E8A": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*",
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging",
+        "s3:Abort*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::ImportValue": "TheraScout-Data:ExportsOutputFnGetAttRawDataBucket57F26C03Arn307EA583"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::ImportValue": "TheraScout-Data:ExportsOutputFnGetAttRawDataBucket57F26C03Arn307EA583"
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "bedrock:InvokeModel",
+        "bedrock:InvokeModelWithResponseStream"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "queryglobocandataServiceRoleDefaultPolicy1CA63E8A",
+    "Roles": [
+     {
+      "Ref": "queryglobocandataServiceRole3794C946"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Agents/query_globocan_data/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "queryglobocandata5C4D6A01": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1"
+     },
+     "S3Key": "a71a1c4ff5302372ddb27d98f2b88eda422bdaf10bc09556e3a52bc93cf17f2a.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "DATA_BUCKET_NAME": {
+       "Fn::ImportValue": "TheraScout-Data:ExportsOutputRefRawDataBucket57F26C0354920F72"
+      }
+     }
+    },
+    "FunctionName": "therascout-query_globocan_data",
+    "Handler": "handler.lambda_handler",
+    "MemorySize": 256,
+    "Role": {
+     "Fn::GetAtt": [
+      "queryglobocandataServiceRole3794C946",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.12",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "queryglobocandataServiceRoleDefaultPolicy1CA63E8A",
+    "queryglobocandataServiceRole3794C946"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Agents/query_globocan_data/Resource",
+    "aws:asset:path": "asset.a71a1c4ff5302372ddb27d98f2b88eda422bdaf10bc09556e3a52bc93cf17f2a",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "querypubmedServiceRole8260686A": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Agents/query_pubmed/ServiceRole/Resource"
+   }
+  },
+  "querypubmedServiceRoleDefaultPolicy3EDC7FD6": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*",
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging",
+        "s3:Abort*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::ImportValue": "TheraScout-Data:ExportsOutputFnGetAttRawDataBucket57F26C03Arn307EA583"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::ImportValue": "TheraScout-Data:ExportsOutputFnGetAttRawDataBucket57F26C03Arn307EA583"
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "bedrock:InvokeModel",
+        "bedrock:InvokeModelWithResponseStream"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "querypubmedServiceRoleDefaultPolicy3EDC7FD6",
+    "Roles": [
+     {
+      "Ref": "querypubmedServiceRole8260686A"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Agents/query_pubmed/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "querypubmedA6734303": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1"
+     },
+     "S3Key": "a5fa5e65badf2b781f94f180bc5a2c78d145a81cea8dd6f643dc4fcba05fabce.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "DATA_BUCKET_NAME": {
+       "Fn::ImportValue": "TheraScout-Data:ExportsOutputRefRawDataBucket57F26C0354920F72"
+      }
+     }
+    },
+    "FunctionName": "therascout-query_pubmed",
+    "Handler": "handler.lambda_handler",
+    "MemorySize": 256,
+    "Role": {
+     "Fn::GetAtt": [
+      "querypubmedServiceRole8260686A",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.12",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "querypubmedServiceRoleDefaultPolicy3EDC7FD6",
+    "querypubmedServiceRole8260686A"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Agents/query_pubmed/Resource",
+    "aws:asset:path": "asset.a5fa5e65badf2b781f94f180bc5a2c78d145a81cea8dd6f643dc4fcba05fabce",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "queryclinicaltrialsServiceRoleD2A2DD46": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Agents/query_clinicaltrials/ServiceRole/Resource"
+   }
+  },
+  "queryclinicaltrialsServiceRoleDefaultPolicyA252755D": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*",
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging",
+        "s3:Abort*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::ImportValue": "TheraScout-Data:ExportsOutputFnGetAttRawDataBucket57F26C03Arn307EA583"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::ImportValue": "TheraScout-Data:ExportsOutputFnGetAttRawDataBucket57F26C03Arn307EA583"
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "bedrock:InvokeModel",
+        "bedrock:InvokeModelWithResponseStream"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "queryclinicaltrialsServiceRoleDefaultPolicyA252755D",
+    "Roles": [
+     {
+      "Ref": "queryclinicaltrialsServiceRoleD2A2DD46"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Agents/query_clinicaltrials/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "queryclinicaltrialsD13471DE": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1"
+     },
+     "S3Key": "55d638e85112c4d973aa928e8c4e9cc798a5ce1ccb562e3705e674f11f4ec2f2.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "DATA_BUCKET_NAME": {
+       "Fn::ImportValue": "TheraScout-Data:ExportsOutputRefRawDataBucket57F26C0354920F72"
+      }
+     }
+    },
+    "FunctionName": "therascout-query_clinicaltrials",
+    "Handler": "handler.lambda_handler",
+    "MemorySize": 256,
+    "Role": {
+     "Fn::GetAtt": [
+      "queryclinicaltrialsServiceRoleD2A2DD46",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.12",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "queryclinicaltrialsServiceRoleDefaultPolicyA252755D",
+    "queryclinicaltrialsServiceRoleD2A2DD46"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Agents/query_clinicaltrials/Resource",
+    "aws:asset:path": "asset.55d638e85112c4d973aa928e8c4e9cc798a5ce1ccb562e3705e674f11f4ec2f2",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "queryopenfdaServiceRole78BA9540": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Agents/query_openfda/ServiceRole/Resource"
+   }
+  },
+  "queryopenfdaServiceRoleDefaultPolicy038534F7": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*",
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging",
+        "s3:Abort*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::ImportValue": "TheraScout-Data:ExportsOutputFnGetAttRawDataBucket57F26C03Arn307EA583"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::ImportValue": "TheraScout-Data:ExportsOutputFnGetAttRawDataBucket57F26C03Arn307EA583"
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "bedrock:InvokeModel",
+        "bedrock:InvokeModelWithResponseStream"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "queryopenfdaServiceRoleDefaultPolicy038534F7",
+    "Roles": [
+     {
+      "Ref": "queryopenfdaServiceRole78BA9540"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Agents/query_openfda/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "queryopenfdaDA8C78AE": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1"
+     },
+     "S3Key": "dbf613f024d9b90c5116476a59cabe9ac15a5f46504c0e04db9b53239509f05c.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "DATA_BUCKET_NAME": {
+       "Fn::ImportValue": "TheraScout-Data:ExportsOutputRefRawDataBucket57F26C0354920F72"
+      }
+     }
+    },
+    "FunctionName": "therascout-query_openfda",
+    "Handler": "handler.lambda_handler",
+    "MemorySize": 256,
+    "Role": {
+     "Fn::GetAtt": [
+      "queryopenfdaServiceRole78BA9540",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.12",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "queryopenfdaServiceRoleDefaultPolicy038534F7",
+    "queryopenfdaServiceRole78BA9540"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Agents/query_openfda/Resource",
+    "aws:asset:path": "asset.dbf613f024d9b90c5116476a59cabe9ac15a5f46504c0e04db9b53239509f05c",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "checkdatascopeServiceRoleAEB58C65": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Agents/check_data_scope/ServiceRole/Resource"
+   }
+  },
+  "checkdatascopeServiceRoleDefaultPolicy1CF89F80": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*",
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging",
+        "s3:Abort*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::ImportValue": "TheraScout-Data:ExportsOutputFnGetAttRawDataBucket57F26C03Arn307EA583"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::ImportValue": "TheraScout-Data:ExportsOutputFnGetAttRawDataBucket57F26C03Arn307EA583"
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "bedrock:InvokeModel",
+        "bedrock:InvokeModelWithResponseStream"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "checkdatascopeServiceRoleDefaultPolicy1CF89F80",
+    "Roles": [
+     {
+      "Ref": "checkdatascopeServiceRoleAEB58C65"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Agents/check_data_scope/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "checkdatascope218F1612": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1"
+     },
+     "S3Key": "449ca846f26f8b9a72963db30598ad6d99613969a2a28b8b2102c92fbde727c9.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "DATA_BUCKET_NAME": {
+       "Fn::ImportValue": "TheraScout-Data:ExportsOutputRefRawDataBucket57F26C0354920F72"
+      }
+     }
+    },
+    "FunctionName": "therascout-check_data_scope",
+    "Handler": "handler.lambda_handler",
+    "MemorySize": 256,
+    "Role": {
+     "Fn::GetAtt": [
+      "checkdatascopeServiceRoleAEB58C65",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.12",
+    "Timeout": 10
+   },
+   "DependsOn": [
+    "checkdatascopeServiceRoleDefaultPolicy1CF89F80",
+    "checkdatascopeServiceRoleAEB58C65"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Agents/check_data_scope/Resource",
+    "aws:asset:path": "asset.449ca846f26f8b9a72963db30598ad6d99613969a2a28b8b2102c92fbde727c9",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "enrichenterprisedataServiceRole8D386827": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Agents/enrich_enterprise_data/ServiceRole/Resource"
+   }
+  },
+  "enrichenterprisedataServiceRoleDefaultPolicyBD1438B1": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*",
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging",
+        "s3:Abort*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::ImportValue": "TheraScout-Data:ExportsOutputFnGetAttRawDataBucket57F26C03Arn307EA583"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::ImportValue": "TheraScout-Data:ExportsOutputFnGetAttRawDataBucket57F26C03Arn307EA583"
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "bedrock:InvokeModel",
+        "bedrock:InvokeModelWithResponseStream"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "enrichenterprisedataServiceRoleDefaultPolicyBD1438B1",
+    "Roles": [
+     {
+      "Ref": "enrichenterprisedataServiceRole8D386827"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Agents/enrich_enterprise_data/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "enrichenterprisedata41320ADA": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1"
+     },
+     "S3Key": "6f27a374e728ca6c98d3b5c11503940b62ef212c02f71b1cca8b9399178969c6.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "DATA_BUCKET_NAME": {
+       "Fn::ImportValue": "TheraScout-Data:ExportsOutputRefRawDataBucket57F26C0354920F72"
+      }
+     }
+    },
+    "FunctionName": "therascout-enrich_enterprise_data",
+    "Handler": "handler.lambda_handler",
+    "MemorySize": 256,
+    "Role": {
+     "Fn::GetAtt": [
+      "enrichenterprisedataServiceRole8D386827",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.12",
+    "Timeout": 10
+   },
+   "DependsOn": [
+    "enrichenterprisedataServiceRoleDefaultPolicyBD1438B1",
+    "enrichenterprisedataServiceRole8D386827"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Agents/enrich_enterprise_data/Resource",
+    "aws:asset:path": "asset.6f27a374e728ca6c98d3b5c11503940b62ef212c02f71b1cca8b9399178969c6",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "invokeagentcoreagentServiceRole67C751FB": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Agents/invoke_agentcore_agent/ServiceRole/Resource"
+   }
+  },
+  "invokeagentcoreagentServiceRoleDefaultPolicy30EE862B": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*",
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging",
+        "s3:Abort*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::ImportValue": "TheraScout-Data:ExportsOutputFnGetAttRawDataBucket57F26C03Arn307EA583"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::ImportValue": "TheraScout-Data:ExportsOutputFnGetAttRawDataBucket57F26C03Arn307EA583"
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "bedrock-agentcore:InvokeAgentRuntime",
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "bedrock:InvokeModel",
+        "bedrock:InvokeModelWithResponseStream"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "invokeagentcoreagentServiceRoleDefaultPolicy30EE862B",
+    "Roles": [
+     {
+      "Ref": "invokeagentcoreagentServiceRole67C751FB"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Agents/invoke_agentcore_agent/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "invokeagentcoreagent3D525339": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1"
+     },
+     "S3Key": "d5508b436f5c8cd400dcf252c74d96a59943af889f3a9ffadc8d42d14bdd2172.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "DATA_BUCKET_NAME": {
+       "Fn::ImportValue": "TheraScout-Data:ExportsOutputRefRawDataBucket57F26C0354920F72"
+      }
+     }
+    },
+    "FunctionName": "therascout-invoke_agentcore_agent",
+    "Handler": "handler.lambda_handler",
+    "MemorySize": 256,
+    "Role": {
+     "Fn::GetAtt": [
+      "invokeagentcoreagentServiceRole67C751FB",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.12",
+    "Timeout": 90
+   },
+   "DependsOn": [
+    "invokeagentcoreagentServiceRoleDefaultPolicy30EE862B",
+    "invokeagentcoreagentServiceRole67C751FB"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Agents/invoke_agentcore_agent/Resource",
+    "aws:asset:path": "asset.d5508b436f5c8cd400dcf252c74d96a59943af889f3a9ffadc8d42d14bdd2172",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "scoreopportunitiesfallbackServiceRole656E7DC4": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Agents/score_opportunities_fallback/ServiceRole/Resource"
+   }
+  },
+  "scoreopportunitiesfallbackServiceRoleDefaultPolicy8C4FD7C1": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*",
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging",
+        "s3:Abort*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::ImportValue": "TheraScout-Data:ExportsOutputFnGetAttRawDataBucket57F26C03Arn307EA583"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::ImportValue": "TheraScout-Data:ExportsOutputFnGetAttRawDataBucket57F26C03Arn307EA583"
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "bedrock:InvokeModel",
+        "bedrock:InvokeModelWithResponseStream"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "scoreopportunitiesfallbackServiceRoleDefaultPolicy8C4FD7C1",
+    "Roles": [
+     {
+      "Ref": "scoreopportunitiesfallbackServiceRole656E7DC4"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Agents/score_opportunities_fallback/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "scoreopportunitiesfallback839A520E": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1"
+     },
+     "S3Key": "57443032c06cb3d5d51b34c278b86faa00b3654c735fb5d008b04cc828ed6363.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "DATA_BUCKET_NAME": {
+       "Fn::ImportValue": "TheraScout-Data:ExportsOutputRefRawDataBucket57F26C0354920F72"
+      },
+      "SCORING_WEIGHTS": "{\n  \"_comment\": \"Illustrative configurable weighting from the TheraScout proposal. Tune these post-MVP based on validated researcher feedback, not guesswork.\",\n  \"weights\": {\n    \"unmet_medical_need\": 0.30,\n    \"disease_burden\": 0.20,\n    \"existing_treatment_gap\": 0.20,\n    \"scientific_evidence\": 0.15,\n    \"research_momentum\": 0.10,\n    \"competitive_landscape\": 0.05\n  },\n  \"score_range\": { \"min\": 0, \"max\": 100 },\n  \"disclaimer\": \"The Opportunity Score is a decision-support prioritization metric based on available evidence. It is not a guarantee of drug success, a clinical prediction, or a regulatory prediction.\"\n}\n"
+     }
+    },
+    "FunctionName": "therascout-score_opportunities_fallback",
+    "Handler": "handler.lambda_handler",
+    "MemorySize": 256,
+    "Role": {
+     "Fn::GetAtt": [
+      "scoreopportunitiesfallbackServiceRole656E7DC4",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.12",
+    "Timeout": 15
+   },
+   "DependsOn": [
+    "scoreopportunitiesfallbackServiceRoleDefaultPolicy8C4FD7C1",
+    "scoreopportunitiesfallbackServiceRole656E7DC4"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Agents/score_opportunities_fallback/Resource",
+    "aws:asset:path": "asset.57443032c06cb3d5d51b34c278b86faa00b3654c735fb5d008b04cc828ed6363",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "composepdfreportServiceRoleBE1F149D": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Agents/compose_pdf_report/ServiceRole/Resource"
+   }
+  },
+  "composepdfreportServiceRoleDefaultPolicy23BA16A4": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*",
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging",
+        "s3:Abort*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::ImportValue": "TheraScout-Data:ExportsOutputFnGetAttRawDataBucket57F26C03Arn307EA583"
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::ImportValue": "TheraScout-Data:ExportsOutputFnGetAttRawDataBucket57F26C03Arn307EA583"
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "bedrock:InvokeModel",
+        "bedrock:InvokeModelWithResponseStream"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "composepdfreportServiceRoleDefaultPolicy23BA16A4",
+    "Roles": [
+     {
+      "Ref": "composepdfreportServiceRoleBE1F149D"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Agents/compose_pdf_report/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "composepdfreport136B7298": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1"
+     },
+     "S3Key": "2bcd2ea5b42ce2afa4c3ac1de1be9244778f67378c24ac9200ade7dc1a827af8.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "DATA_BUCKET_NAME": {
+       "Fn::ImportValue": "TheraScout-Data:ExportsOutputRefRawDataBucket57F26C0354920F72"
+      }
+     }
+    },
+    "FunctionName": "therascout-compose_pdf_report",
+    "Handler": "handler.lambda_handler",
+    "MemorySize": 256,
+    "Role": {
+     "Fn::GetAtt": [
+      "composepdfreportServiceRoleBE1F149D",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.12",
+    "Timeout": 60
+   },
+   "DependsOn": [
+    "composepdfreportServiceRoleDefaultPolicy23BA16A4",
+    "composepdfreportServiceRoleBE1F149D"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Agents/compose_pdf_report/Resource",
+    "aws:asset:path": "asset.2bcd2ea5b42ce2afa4c3ac1de1be9244778f67378c24ac9200ade7dc1a827af8",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/zWMwQ6CMBBEv4X7soKodzHxTOADyFIqVkqbsG0IafrvBtDTezOTzBnzW4ZZQgunoh9TrToMjSMxAi3cBk1T1xOGpzfCKWvg8TJ/j6BowlBbLbd6Z2W1EusWD4vARUvM0jHeNwAXWHoxSlcSywi1ZOtnIWFfG0eDMsN+9xsiVKt7W3MqML/gNfmwUunsjVOTxPrgFxjRSiLGAAAA"
+   },
+   "Metadata": {
+    "aws:cdk:path": "TheraScout-Agents/CDKMetadata/Default"
+   }
+  }
+ },
+ "Outputs": {
+  "ExportsOutputFnGetAttqueryglobocandata5C4D6A01ArnE2990389": {
+   "Value": {
+    "Fn::GetAtt": [
+     "queryglobocandata5C4D6A01",
+     "Arn"
+    ]
+   },
+   "Export": {
+    "Name": "TheraScout-Agents:ExportsOutputFnGetAttqueryglobocandata5C4D6A01ArnE2990389"
+   }
+  },
+  "ExportsOutputFnGetAttquerypubmedA6734303Arn2728423C": {
+   "Value": {
+    "Fn::GetAtt": [
+     "querypubmedA6734303",
+     "Arn"
+    ]
+   },
+   "Export": {
+    "Name": "TheraScout-Agents:ExportsOutputFnGetAttquerypubmedA6734303Arn2728423C"
+   }
+  },
+  "ExportsOutputFnGetAttqueryclinicaltrialsD13471DEArn4DBED974": {
+   "Value": {
+    "Fn::GetAtt": [
+     "queryclinicaltrialsD13471DE",
+     "Arn"
+    ]
+   },
+   "Export": {
+    "Name": "TheraScout-Agents:ExportsOutputFnGetAttqueryclinicaltrialsD13471DEArn4DBED974"
+   }
+  },
+  "ExportsOutputFnGetAttqueryopenfdaDA8C78AEArn10D103B5": {
+   "Value": {
+    "Fn::GetAtt": [
+     "queryopenfdaDA8C78AE",
+     "Arn"
+    ]
+   },
+   "Export": {
+    "Name": "TheraScout-Agents:ExportsOutputFnGetAttqueryopenfdaDA8C78AEArn10D103B5"
+   }
+  },
+  "ExportsOutputFnGetAttcheckdatascope218F1612Arn161C1C9A": {
+   "Value": {
+    "Fn::GetAtt": [
+     "checkdatascope218F1612",
+     "Arn"
+    ]
+   },
+   "Export": {
+    "Name": "TheraScout-Agents:ExportsOutputFnGetAttcheckdatascope218F1612Arn161C1C9A"
+   }
+  },
+  "ExportsOutputFnGetAttenrichenterprisedata41320ADAArn18C9D53B": {
+   "Value": {
+    "Fn::GetAtt": [
+     "enrichenterprisedata41320ADA",
+     "Arn"
+    ]
+   },
+   "Export": {
+    "Name": "TheraScout-Agents:ExportsOutputFnGetAttenrichenterprisedata41320ADAArn18C9D53B"
+   }
+  },
+  "ExportsOutputFnGetAttinvokeagentcoreagent3D525339ArnDBB8D1A8": {
+   "Value": {
+    "Fn::GetAtt": [
+     "invokeagentcoreagent3D525339",
+     "Arn"
+    ]
+   },
+   "Export": {
+    "Name": "TheraScout-Agents:ExportsOutputFnGetAttinvokeagentcoreagent3D525339ArnDBB8D1A8"
+   }
+  },
+  "ExportsOutputFnGetAttscoreopportunitiesfallback839A520EArn6D4C7055": {
+   "Value": {
+    "Fn::GetAtt": [
+     "scoreopportunitiesfallback839A520E",
+     "Arn"
+    ]
+   },
+   "Export": {
+    "Name": "TheraScout-Agents:ExportsOutputFnGetAttscoreopportunitiesfallback839A520EArn6D4C7055"
+   }
+  },
+  "ExportsOutputFnGetAttcomposepdfreport136B7298ArnEF0C3B8C": {
+   "Value": {
+    "Fn::GetAtt": [
+     "composepdfreport136B7298",
+     "Arn"
+    ]
+   },
+   "Export": {
+    "Name": "TheraScout-Agents:ExportsOutputFnGetAttcomposepdfreport136B7298ArnEF0C3B8C"
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

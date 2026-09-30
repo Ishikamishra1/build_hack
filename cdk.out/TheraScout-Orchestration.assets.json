@@ -1,0 +1,20 @@
+{
+  "version": "38.0.1",
+  "files": {
+    "16e0d0246b4dfb6e0acb3bc7490cef29fb07b93b877f1281b74b1793a4c5dd23": {
+      "source": {
+        "path": "TheraScout-Orchestration.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "current_account-us-east-1": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-us-east-1",
+          "objectKey": "16e0d0246b4dfb6e0acb3bc7490cef29fb07b93b877f1281b74b1793a4c5dd23.json",
+          "region": "us-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-us-east-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}
